@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from 'react';
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import Nav from './components/1_header/Nav';
+
+// Pages import
+import HomePage from './pages/HomePage';
+import ClientsPage from './pages/ClientsPage';
+// Global State
+//-useReducer logic
+let initialState = 0;
+const reducer = (state, action) => {
+  //-reducer gives back new state
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'RESET':
+      return initialState;
+    default:
+      return state;
+  }
+};
+// Context
+export const VisitedPagesContext = React.createContext();
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <header>
+          <Nav />
+          <p>{state}</p>
+          <button onClick={() => dispatch({ type: 'RESET' })}>
+            reset visits...
+          </button>
+        </header>
+        <VisitedPagesContext.Provider value={{ increment: dispatch }}>
+          <main>
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route path='/clients' component={ClientsPage} />
+            </Switch>
+          </main>
+        </VisitedPagesContext.Provider>
+        <footer></footer>
+      </Router>
+    </>
   );
 }
 

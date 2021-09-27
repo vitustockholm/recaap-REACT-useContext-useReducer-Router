@@ -1,0 +1,20 @@
+REACT aplinka:
+ =Create React App (CRA)      |   SPA    | CSR
+ =Next.js                     |   MPA    | SSR/SSG + CSR (serversiderendering)
+ =Gatsby.js                   |   MPA    | SSG + CSR client (side rendering)
+ =Custom setup                |   SPA/MPA| CSR/SSR/SSG
+ ---------------------------------------------------------
+
+ REACT aplinkacijos navigavimas:
+ =Create React App (CRA)      |  REACT Router library - npm  i react-router-dom
+ =Next.js                     |  Inside navigation system (npm i next)
+ =Gatsby.js                   |  Inside navigation system (npm i gatsby)
+ =Custom setup                |  By the needs and by the configuration
+ ---------------------------------------------------------
+
+ REACT state management 
+  =state               | Class components         local  =>  global
+  =useState hook       | Functional components    local  =>  global
+  =useReducer          | Functional components    global =>  local
+
+  =redux               | Class and Functional components (global)
